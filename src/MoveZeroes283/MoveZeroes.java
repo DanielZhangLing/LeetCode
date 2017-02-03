@@ -23,10 +23,7 @@ public class MoveZeroes {
     
 	public static void main(String[] args){
 		
-		MoveZeroes test = new MoveZeroes();
-		int[] data = {0,1,0,3,12};
-		for(int e:test.moveZeroes(data))
-		System.out.println(e);
+		String a = "12345";
 		
 	}
 }
