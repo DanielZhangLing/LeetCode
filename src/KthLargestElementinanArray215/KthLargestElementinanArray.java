@@ -37,7 +37,8 @@ public class KthLargestElementinanArray {
     }
     
     public static void main(String[] args){
-    	int[] nums = {2,1};
-    	findKthLargest(nums, 1);
+    	String a = "12345678";
+    	String b = "12345";
+    	System.out.println(a+b);
     }
 }
