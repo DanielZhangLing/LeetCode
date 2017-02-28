@@ -1,6 +1,9 @@
 package DesignTicTacToe348;
 
-import BinaryTreeInorderTraversal94.TreeNode;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Queue;
 
 public class DesignTicTacToe {
 	
@@ -58,9 +61,18 @@ public class DesignTicTacToe {
 		
 		return 0;	
     }
-    
+
+    public static int getSomeNumber( ){
+     try{
+       return 2;
+     } finally {
+       return 1;
+     }
+    }
 	public static void main(String[] args){
-		int[] a = {1,1};
-		System.out.println(++a[0]);
+		Map<String,String> map = new HashMap<String,String>();
+		System.out.println(map.getClass());
+		Queue<Integer> q = new LinkedList<Integer>();
+		System.out.println(q.getClass());
 	}
 }
