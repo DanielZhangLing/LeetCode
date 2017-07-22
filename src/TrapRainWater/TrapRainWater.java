@@ -5,6 +5,12 @@ public class TrapRainWater {
      * @param heights: an array of integers
      * @return: a integer
      */
+	/*
+	 * choose the lower side left or right
+	 * push until heights[i]>heights[left]
+	 * left =i 
+	 * choose side again which is lower
+	 */
     public int trapRainWater(int[] heights) {
         // write your code here
         int left = 0, right = heights.length - 1; 

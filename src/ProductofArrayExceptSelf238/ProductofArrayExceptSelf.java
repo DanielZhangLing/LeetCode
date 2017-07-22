@@ -1,45 +1,24 @@
 package ProductofArrayExceptSelf238;
 
 public class ProductofArrayExceptSelf {
-
-    public int[] productExceptSelf(int[] nums) {
-     
-    	int[] output = new int[nums.length];
-    	int product = 1;
-    	int productExptZero = 1;
-    	boolean count = true;
-    	for(int elm: nums){
-    		if (count&& elm==0){
-    			count = false;
-    			product *= elm;
-    		}
-    		else{
-    			product *= elm;
-    			productExptZero *= elm;
-    		}
-    	}
-    	for(int i=0; i<nums.length;i++){
-    		if(nums[i]==0)
-    			output[i] = productExptZero;
-    		else
-    			output[i] = product/nums[i];
-    	}
-    	
-    	return output;
-    }
     
     // 分别从两边开始往中间乘，都到了目标位置停下
-    public int[] productExceptSelf2(int[] nums) {
-        int[] result = new int[nums.length];
-        for (int i = 0, tmp = 1; i < nums.length; i++) {
-            result[i] = tmp;
-            tmp *= nums[i];
+    public int[] productExceptSelf(int[] nums) {
+        if(nums.length==0||nums.length==1)
+            return null;
+        int n = nums.length;
+        int res[] = new int[n];
+        res[0] = 1;
+        for(int i = 1; i<n; i++){
+            res[i] = res[i-1]*nums[i-1];
         }
-        for (int i = nums.length - 1, tmp = 1; i >= 0; i--) {
-            result[i] *= tmp;
-            tmp *= nums[i];
+        int total = nums[n-1];
+        for(int j = n-2; j>=0; j--){
+            res[j] *= total;
+            total *= nums[j];
         }
-        return result;
+        return res;
+        
     }
     
     public static void main(String[] args){
