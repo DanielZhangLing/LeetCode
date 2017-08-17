@@ -2,28 +2,29 @@ package DecodeWays;
 
 public class DecodeWays91 {
     public static int numDecodings(String s) {
-        int n = s.length();
-        if(null==s||""==s||0==n)
-            return 0;
-        
-        if(n==1)
-            return 1;
-        if(Integer.parseInt(s)<27){
-        	return 2;
+        int res = 0;
+        if(s==null||s.length()==0||s.charAt(0)=='0')
+            return res;
+        int[] dp = new int[s.length()+1];
+        dp[0] = 1;
+        dp[1] = 1;
+        for(int i = 2; i<=s.length(); i++){
+            if(s.charAt(i-2)!='1'&& s.charAt(i-1)=='0'){
+                return 0;
+            }
+            if((s.charAt(i-2)=='2'&& s.charAt(i-1)<'7'&&s.charAt(i-1)>'0')||(s.charAt(i-2)=='1'&&s.charAt(i-1)!='0')){
+                dp[i] = dp[i-2] + dp[i-1];
+            }else{
+                dp[i] = dp[i-1];
+            }
         }
-        int result = 0;
-        if('1'==s.charAt(n-2)||'2'==s.charAt(n-2))
-            result = numDecodings(s.substring(0,n-2)) + numDecodings(s.substring(0,n-1));
-        else
-            result = numDecodings(s.substring(0,n-1));
-        return result;
+        return dp[s.length()];
+        
         
     }
     public static void main(String[] args){
-    	String a  = "123";
+    	String a  = "110";
     	int n = a.length();
     	System.out.println(numDecodings(a));
-    	System.out.println(numDecodings("1"));
-    	System.out.println(numDecodings("12"));
     }
 }

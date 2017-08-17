@@ -2,6 +2,9 @@ package SparseMatrixMultiplication311;
 
 public class SparseMatrixMultiplication {
 
+	/*
+	 * 改变哪个先循环是一样的关键是把判断尽量拿到外面做这样提早省掉不必要的操作
+	 */
     public int[][] multiply(int[][] A, int[][] B) {
         int m = A.length, n = A[0].length, nB = B[0].length;
         int[][] C = new int[m][nB];

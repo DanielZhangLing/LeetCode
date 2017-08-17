@@ -10,6 +10,15 @@ import BinaryTreeInorderTraversal94.TreeNode;
 
 public class BinaryTreeVerticalOrderTraversal {
 	
+/*
+ * BFS, put node, col into queue at the same time
+Every left child access col - 1 while right child col + 1
+This maps node into different col buckets
+Get col boundary min and max on the fly
+Retrieve result from cols
+max and min calculate min and max index. finally we will use them to get output
+ */
+	
 	 public List<List<Integer>> verticalOrder(TreeNode root) {
 	        List<List<Integer>> result = new ArrayList<>();
 	        if(root==null)

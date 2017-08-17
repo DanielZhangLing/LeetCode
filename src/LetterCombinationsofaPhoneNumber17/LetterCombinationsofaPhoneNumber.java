@@ -4,6 +4,9 @@ package LetterCombinationsofaPhoneNumber17;
  * Created by LingZhang on 5/14/17.
  */
 public class LetterCombinationsofaPhoneNumber {
+	/*
+	 * 这里算是递归，每次加上一个数字
+	 */
     public static List<String> letterCombinations(String digits) {
         String digitletter[] = {"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
         List<String> result = new ArrayList<String>();
