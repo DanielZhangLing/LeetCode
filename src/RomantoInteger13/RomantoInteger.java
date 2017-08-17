@@ -1,6 +1,9 @@
 package RomantoInteger13;
 
 public class RomantoInteger {
+	/*
+	 * get number from roman first is smaller than the latter one than it's a subtraction
+	 */
 	public int romanToInt(String s) {
 
 		int res = 0;

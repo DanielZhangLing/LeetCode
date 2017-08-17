@@ -1,64 +1,62 @@
 package ImplementTrie208;
 
-class TrieNode{
-    public char value;
-    public boolean isWord;
-    public TrieNode[] son = new TrieNode[26];
-    public TrieNode(){};
-    public TrieNode(char value){
-        this.value = value;
-    }
-}
-
 public class ImplementTrie {
 
-    public TrieNode root;
+    char val;
+    Trie[] t;
+    boolean isWord;
     /** Initialize your data structure here. */
-    public ImplementTrie() {
-        root = new TrieNode(' ');
+    public Trie() {
+        t = new Trie[26];
+        val = ' ';
+    }
+    
+    public Trie(char c) {
+        t = new Trie[26];
+        val = c;
     }
     
     /** Inserts a word into the trie. */
     public void insert(String word) {
-        TrieNode current = root;
-        for(int i =0; i<word.length();i++){
-            char temp = word.charAt(i);
-            if(root.son[temp-'a']==null)
-                root.son[temp-'a'] = new TrieNode(temp);
-            current = current.son[temp-'a'];
+        Trie cur = this;
+        for(char c: word.toCharArray()){
+            if(cur.t[c-'a']==null){
+                cur.t[c-'a'] = new Trie(c);
+            }
+            cur = cur.t[c-'a'];
         }
-        current.isWord = true;
+        cur.isWord = true;
     }
     
     /** Returns if the word is in the trie. */
     public boolean search(String word) {
-        TrieNode current = root;
-        for(int i =0; i<word.length();i++){
-            char temp = word.charAt(i);
-            if(root.son[temp-'a']==null)
+        Trie cur = this;
+        for(char c: word.toCharArray()){
+            if(cur.t[c-'a']==null){
                 return false;
-            current = current.son[temp-'a'];
+            }
+            cur = cur.t[c-'a'];
         }
-        return current.isWord;
+        return cur.isWord;
     }
     
     /** Returns if there is any word in the trie that starts with the given prefix. */
     public boolean startsWith(String prefix) {
-        TrieNode current = root;
-        for(int i =0; i<prefix.length();i++){
-            char temp = prefix.charAt(i);
-            if(root.son[temp-'a']==null)
+        Trie cur = this;
+        for(char c: prefix.toCharArray()){
+            if(cur.t[c-'a']==null){
                 return false;
-            current = current.son[temp-'a'];
+            }
+            cur = cur.t[c-'a'];
         }
-        return true;
-    }
-    public static void main(String[] args){
-    	ImplementTrie obj = new ImplementTrie();
-    	  obj.insert("ab");
-    	  boolean param_2 = obj.search("a");
-    	  boolean param_3 = obj.startsWith("a");
-    	  System.out.println(param_2);;
+        if(cur.isWord){
+            return true;
+        }
+        for(Trie elm: cur.t){
+            if (elm!=null)
+                return true;
+        }
+        return false;
     }
 }
 

@@ -5,6 +5,7 @@ public class LongestPalindromicSubstring {
 
 	public String longestPalindrome(String s) {
 		int len = s.length();
+		// special case
 		if (len < 2)
 			return s;
 		
@@ -22,7 +23,7 @@ public class LongestPalindromicSubstring {
 		}
 		if (maxLen < k - j - 1) {
 			lo = j + 1;
-			maxLen = k - j - 1;
+			maxLen = k - j - 1;//be careful here don't take last time into consideration
 		}
 	}
 }
