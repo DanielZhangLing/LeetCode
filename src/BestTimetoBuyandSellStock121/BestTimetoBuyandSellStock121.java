@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 package BestTimetoBuyandSellStock121;
 
 public class BestTimetoBuyandSellStock121 {
@@ -22,3 +23,19 @@ public class BestTimetoBuyandSellStock121 {
         return maxSoFar;
     }
 }
+=======
+package BestTimetoBuyandSellStock121;
+
+public class BestTimetoBuyandSellStock121 {
+    public int maxProfit(int[] prices) {
+        int min = Integer.MAX_VALUE; 
+        int res = 0;
+        for(int p: prices){
+            int cur = p-min;
+            res = Math.max(res,cur);
+            min = Math.min(min,p);
+        }
+        return res;
+    }
+}
+>>>>>>> Stashed changes
