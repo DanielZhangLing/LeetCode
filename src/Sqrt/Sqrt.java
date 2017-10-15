@@ -1,22 +1,22 @@
 package Sqrt;
 
 public class Sqrt {
-    public int sqrt(int x) {
-        // write your code here
-        long start = 1;
-        long end = x;
-        while(start+1<end){
-            long mid = (start+end)/2;
-            if(mid*mid>x){
-                end = mid;
-            }
-            else{
-                start = mid;
-            }
-        }
-        if(start*start <= x)
-            return (int)start;
-        else
-            return (int)end;
-    }
+	public int sqrt(int x) {
+		// write your code here
+//use divide special case
+		if (x == 0)
+			return 0;
+		int left = 1, right = Integer.MAX_VALUE;
+		while (true) {
+			int mid = left + (right - left) / 2;
+			if (mid > x / mid) {// use divide because x maybe equals MAX_VALUE
+				right = mid - 1;
+			} else {
+				if (mid + 1 > x / (mid + 1))
+					return mid;
+				left = mid + 1;
+			}
+
+		}
+	}
 }

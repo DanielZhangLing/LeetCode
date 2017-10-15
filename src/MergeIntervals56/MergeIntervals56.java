@@ -39,4 +39,30 @@ Sorting takes O(n log(n)) and merging the intervals takes O(n).
         result.add(new Interval(start, end));
         return result;
     }
+    public List<Interval> merge(List<Interval> intervals) {
+        List<Interval> res = new ArrayList<Interval>();
+        if(intervals==null||intervals.size()==0)
+            return res;
+        PriorityQueue<Interval> q = new PriorityQueue<Interval>(intervals.size()*2, (a,b)->a.start==b.start?a.end-b.end:a.start-b.start);
+        for(Interval i: intervals){
+            q.add(new Interval(i.start,0));
+            q.add(new Interval(i.end,1));
+        }
+        while(!q.isEmpty()){
+            int l = q.poll().start;
+            int r = l;
+            int cap = 1;
+            while(cap!=0){
+                Interval cur = q.poll();
+                if(cur.end==0)
+                    cap++;
+                if(cur.end==1){
+                    cap--;
+                    r = cur.start;
+                }
+            }
+            res.add(new Interval(l,r));
+        }
+        return res;
+    }
 }
