@@ -3,23 +3,20 @@ package FindtheCelebrity277;
 public class FindtheCelebrity {
 
     public int findCelebrity(int n) {
-    	// The first pass is to pick out the candidate. i doesn't know candidate, then switch candidate. 
-        if(n==0)
-        return -1;
-        int candidate = 0;
-        for(int i=0;i<n;i++)
-        {
-            if(!knows(i, candidate))
+        int candidate = 0;    	
+        // The first pass is to pick out the candidate. i doesn't know candidate, then switch candidate. 
+        for(int i = 1; i<n ; i++){
+            if(knows(candidate,i))
                 candidate = i;
-        }
-        // second pass is to check candidate because it may not exist
-        for(int j = 0; j<n ; j++){
-            if(j!=candidate){
-                if(!knows(j, candidate) || knows(candidate, j))
+        //doesn't check if candidate doesn't know former guys before switch him
+        }for(int i = 0; i<candidate; i++){
+            if(knows(candidate,i))
                 return -1;
-            }
         }
-        
+        for(int i = 0;i<n; i++){
+            if(i!=candidate&&!knows(i,candidate))
+                return -1;
+        }
         return candidate;
     }
 }
