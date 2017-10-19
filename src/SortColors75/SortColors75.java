@@ -26,12 +26,13 @@ public class SortColors75 {
 	            nums[index] = nums[p1];
 	            nums[p1] = 0;
 	            p1++;
+	            // no need for recheck because the former are already correct
 	        }
 	        if (nums[index] == 2) {
 	            nums[index] = nums[p2];
 	            nums[p2] = 2;
 	            p2--;
-	            index--;
+	            index--;// recheck if after swap is still 2
 	        }
 	        index++;
 	    }

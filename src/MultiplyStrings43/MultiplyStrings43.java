@@ -1,6 +1,7 @@
 package MultiplyStrings43;
 
 public class MultiplyStrings43 {
+	
 	/*
 	 * Start from right to left, perform multiplication on every pair of digits, 
 	 * and add them together. Let's draw the process! 
