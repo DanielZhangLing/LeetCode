@@ -4,6 +4,22 @@ public class ProductofArrayExceptSelf {
     
     // 分别从两边开始往中间乘，都到了目标位置停下
     public int[] productExceptSelf(int[] nums) {
+        int product = 1;
+        int len = nums.length;
+        int[] res = new int[len];
+        for(int i = 0; i< len; i++){
+            res[i] = product;
+            product *= nums[i];
+        }
+        product = 1;
+        for(int i = len-1; i>=0; i--){
+            res[i] *= product;
+            product *=nums[i];
+        }
+        return res;
+    }
+    
+    public int[] productExceptSelf(int[] nums) {
         if(nums.length==0||nums.length==1)
             return null;
         int n = nums.length;

@@ -3,8 +3,6 @@ package ReverseLinkedList206;
 public class ReverseLinkedList {
 
     public ListNode reverseList2(ListNode head) {
-        if(head==null)
-            return null;
         ListNode prev = null;
         ListNode next = null;
         while(head!=null){

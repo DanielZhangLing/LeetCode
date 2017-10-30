@@ -1,24 +1,5 @@
 package CombinationSumIV377;
 
-public class CombinationSumIV377 {
-	/*
-	 * comb[target] = sum(comb[target - nums[i]]),
-	 *  where 0 <= i < nums.length, and target >= nums[i]
-	 */
-    if(nums == null || nums.length==0)
-        return 0;
-    int[] dp = new int[target+1];
-    dp[0] = 1;
-    for(int i = 1; i<=target; i++){
-        for(int j = 0; j<nums.length; j++){
-            if(i - nums[j]>=0){
-                dp[i] += dp[i-nums[j]];
-            }
-        }
-    }
-    return dp[target];
-}
-}
 package CombinationSumIV377;
 
 public class CombinationSumIV377 {
@@ -41,8 +22,25 @@ public class CombinationSumIV377 {
         return dp[target];
     }
     
+    
+//    time limit
+//    public int combinationSum4(int[] nums, int target) {
+//        if (target == 0) {
+//            return 1;
+//        }
+//        int res = 0;
+//        for (int i = 0; i < nums.length; i++) {
+//            if (target >= nums[i]) {
+//                res += combinationSum4(nums, target - nums[i]);
+//            }
+//        }
+//        return res;
+//    }
+    
     /*
      * 自顶向下
+     * We can fill the array with -1 to indicate that the result hasn't been calculated yet.
+     *  0 is not a good choice because it means there is no combination sum for the target.
      */
     
     private int[] dp;
@@ -68,3 +66,10 @@ public class CombinationSumIV377 {
         return res;
     }
 }
+//The problem with negative numbers is that now the combinations 
+// could be potentially of infinite length. Think about nums = [-1, 1] and target = 1.
+// We can have all sequences of arbitrary length that follow the patterns -1, 1, -1, 1,
+// ..., -1, 1, 1 and 1, -1, 1, -1, ..., 1, -1, 1 
+// (there are also others, of course, just to give an example). 
+// So we should limit the length of the combination sequence, 
+// so as to give a bound to the problem.
