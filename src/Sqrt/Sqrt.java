@@ -1,6 +1,23 @@
 package Sqrt;
 
 public class Sqrt {
+	
+    public int mySqrt(int x) {
+        if(x==0)
+            return 0;
+        int low = 1, high = x;
+        while(low+1<high){
+            int mid = low+(high-low)/2;
+            if(mid==x/mid)
+                return mid;
+            if(mid>x/mid){
+                high = mid;
+            }else{
+                low = mid;
+            }
+        }
+        return low>x/low? high:low;// check boundary case
+    }
 	public int sqrt(int x) {
 		// write your code here
 //use divide special case
