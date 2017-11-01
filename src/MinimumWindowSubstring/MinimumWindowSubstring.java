@@ -7,14 +7,14 @@ public class MinimumWindowSubstring {
         for(char c: t.toCharArray()){
             map[c]++;
         }
-        while(cnt==0||r<s.length()){//first option is if r meet s.length() but  cnt==0 l can keep moving
+        while(cnt==0||r<s.length()){//first option is if find enough character cnt==0 l keep moving try to find smaller, only charcter in t will >=0, because l is iterating added character
             if(cnt==0&&map[s.charAt(l++)]++>=0){
                 cnt++;
             }
-            if(r<s.length()&&cnt!=0&&map[s.charAt(r++)]-->=1){//first option is because when finally stop cnt is not 0
+            if(r<s.length()&&cnt!=0&&map[s.charAt(r++)]-->=1){//necessary number havent meet 0, keep adding new character
                 cnt--;
             }
-            if(cnt==0&&r-l<res){
+            if(cnt==0&&r-l<res){// update minimum
                 res = r-l;
                 start = l;
                 end = r;

@@ -42,6 +42,7 @@ public class MeetingRoomsII {
 //Initially, endsItr points to the first end event, and we move i which is the start event pointer. As we examine the start events, weâ€™ll find the first two start events happen before the end event that endsItr points to, so we need two rooms (we magically created two rooms), as shown by the variable rooms. Then, as i points to the third start event, weâ€™ll find that this event happens after the end event pointed by endsItr, then we increment endsItr so that it points to the next end event. What happens here can be thought of as one of the two previous meetings ended, and we moved the newly started meeting into that vacant room, thus we donâ€™t need to increment rooms at this time and move both of the pointers forward.
 //        Next, because endsItr moves to the next end event, weâ€™ll find that the start event pointed by i happens before the end event pointed by endsItr.Thus,now we have 4meetings started but only one ended,so we need one more room.And it goes on as this.
 
+
 	public int minMeetingRooms(Interval[] intervals) {
 	    if (intervals == null || intervals.length == 0)
 	        return 0;
@@ -76,4 +77,5 @@ public class MeetingRoomsII {
 	    
 	    return heap.size();
 	}
+
 }

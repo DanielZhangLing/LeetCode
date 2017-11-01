@@ -23,11 +23,11 @@ max and min calculate min and max index. finally we will use them to get output
 	        List<List<Integer>> result = new ArrayList<>();
 	        if(root==null)
 	    		return result;
-	        int max = 0, min = 0;
+	        int max = 0, min = 0;// help to output
 	        
 	        Queue<TreeNode> q = new LinkedList<TreeNode>();
-	        Queue<Integer> index = new LinkedList<Integer>();
-	        HashMap<Integer,ArrayList<Integer>> map = new HashMap<Integer, ArrayList<Integer>>();
+	        Queue<Integer> index = new LinkedList<Integer>();// store index
+	        HashMap<Integer,ArrayList<Integer>> map = new HashMap<Integer, ArrayList<Integer>>();// do bfs
 	        q.offer(root);
 	        index.offer(0);
 	        

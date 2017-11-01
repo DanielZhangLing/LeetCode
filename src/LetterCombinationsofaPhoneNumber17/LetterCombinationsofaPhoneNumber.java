@@ -6,6 +6,7 @@ package LetterCombinationsofaPhoneNumber17;
 public class LetterCombinationsofaPhoneNumber {
 	
 	/*
+	 * o(m^n)
 	 * queue first in first out q is linkedlist
 	 */
     public List<String> letterCombinations(String digits) {

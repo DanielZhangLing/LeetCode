@@ -42,4 +42,46 @@ public class InsertDeleteGetRandom380 {
     public int getRandom() {
         return nums.get( new Random().nextInt(nums.size()) );
     }
+    
+}
+
+class RandomizedSet {
+
+    List<Integer> arr;
+    HashMap<Integer, Integer> map;
+    Random rand;
+    /** Initialize your data structure here. */
+    public RandomizedSet() {
+        arr = new ArrayList<>();
+        map = new HashMap<>();
+        rand = new Random();
+    }
+    
+    /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
+    public boolean insert(int val) {
+        if(map.containsKey(val))
+            return false;
+        map.put(val,arr.size());
+        arr.add(val);
+        return true;
+    }
+    
+    /** Removes a value from the set. Returns true if the set contained the specified element. */
+    public boolean remove(int val) {
+        if(!map.containsKey(val))
+            return false;
+        int oldIndex = map.get(val);
+        int latestValue = arr.get(arr.size()-1);
+        arr.set(oldIndex, latestValue);
+        arr.remove(arr.size()-1);
+        map.put(latestValue, oldIndex);
+        map.remove(val);
+        return true;
+    }
+    
+    /** Get a random element from the set. */
+    public int getRandom() {
+        int num = rand.nextInt(arr.size());
+        return arr.get(num);
+    }
 }

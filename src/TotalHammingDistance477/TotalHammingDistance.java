@@ -11,16 +11,22 @@ public class TotalHammingDistance {
     	return result;
     }
     
+    /**
+     * For each bit position 1-32 in a 32-bit integer, 
+     * we count the number of integers in the array which have that bit set. 
+     * Then, if there are n integers in the array and k of them have a particular bit set 
+     * and (n-k) do not, then that bit contributes k*(n-k) hamming distance to the total.
+     * @param nums
+     * @return
+     */
     public int totalHammingDistance2(int[] nums) {
-    	int result = 0;
-    	int n = nums.length;
-    	int[] bitCount = new int[31];
-    	for(int i = 0;i<bitCount.length;i++)  {  
-    		int count = 0;
-    		for(int j = 0; j<n;j++)
-    			count+= nums[j]>>i&1;
-    		result += count*(n-count);
-    	}
-    	return result;
+        int total = 0, n = nums.length;
+        for (int j=0;j<32;j++) {
+            int bitCount = 0;
+            for (int i=0;i<n;i++) 
+                bitCount += (nums[i] >> j) & 1;
+            total += bitCount*(n - bitCount);
+        }
+        return total;
     }
 }

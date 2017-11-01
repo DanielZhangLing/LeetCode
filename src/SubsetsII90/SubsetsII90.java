@@ -21,11 +21,30 @@ public class SubsetsII90 {
     public void dfs(List<List<Integer>> res,int[] nums, int index, List<Integer> cur){
         res.add(new ArrayList<Integer>(cur));
         for(int i = index; i<nums.length; i++){
-            if(index!=i&&nums[i]==nums[i-1])
+            if(index!=i&&nums[i]==nums[i-1])// for each level if occur second time only take the first one
                 continue;
             cur.add(nums[i]);
             dfs(res,nums,i+1,cur);
             cur.remove(cur.size()-1);
         }
     }
+    
+    
+    HashSet<List<Integer>> set = new HashSet<>();
+    List<List<Integer>> res = new ArrayList<>();
+    Arrays.sort(nums);
+    set.add(new ArrayList<>());
+    res.add(new ArrayList<>());
+    for(int i = 0 ; i<nums.length; i++){
+        int size = res.size();
+        for(int j = 0 ; j<size; j++){
+            List<Integer> cur = new ArrayList<>(res.get(j));
+            cur.add(nums[i]);
+            if(!set.contains(cur)){
+                res.add(cur);
+                set.add(cur);
+            }
+        }
+    }
+    return res;
 }

@@ -3,18 +3,15 @@ package ReverseLinkedList206;
 public class ReverseLinkedList {
 
     public ListNode reverseList2(ListNode head) {
-        if(head == null)
-            return null;
-        ListNode pre = null;
-        ListNode cur = head;
+        ListNode prev = null;
         ListNode next = null;
-        while(cur!=null){
-            next = cur.next;
-            cur.next = pre;
-            pre = cur;
-            cur = next;
+        while(head!=null){
+            next = head.next;
+            head.next = prev;
+            prev = head;
+            head = next;
         }
-        return pre;
+        return prev;
     }
 	
     public ListNode reverseList(ListNode head) {

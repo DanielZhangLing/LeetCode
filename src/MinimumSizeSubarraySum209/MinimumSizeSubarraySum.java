@@ -1,24 +1,21 @@
 package MinimumSizeSubarraySum209;
 
 public class MinimumSizeSubarraySum {
-
-    public int minSubArrayLen(int[] nums, int s) {
-        // write your code here
-        int i = 0;
-        int j = 0;
-        int len = nums.length;
-        int res = Integer.MAX_VALUE;
-        int sum = 0;
-        for(; i <len; i++){
-            while(j <len && sum<s){
-                sum+= nums[j];
-                j++;
+// two pointers
+    public int minSubArrayLen(int s, int[] nums) {
+        if (nums == null || nums.length == 0)
+            return 0;
+        int min = Integer.MAX_VALUE;
+        int i = 0, j = 0, sum = 0;
+        while(j<nums.length){
+            if(sum<s){
+                sum += nums[j++];
             }
-            if(sum>=s)
-                res = Math.min(res, j-i);
-            sum -= nums[i];
+            while(sum>=s){
+                min = Math.min(min,j-i );
+                sum -= nums[i++];
+            }
         }
-            
-        return res==Integer.MAX_VALUE?-1:res;
+        return min==Integer.MAX_VALUE?0:min;
     }
 }
