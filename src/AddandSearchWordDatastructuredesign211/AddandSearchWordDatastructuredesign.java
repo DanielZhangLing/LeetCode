@@ -37,7 +37,7 @@ class WordDictionary {
             return wd.isWord;
         }
         char c = word[index];
-        if(word[index]=='.'){
+        if(c=='.'){
             for(int i = 0; i<26; i++){
                 if(wd.dicts[i]!=null&&search(word, index+1, wd.dicts[i])){
                     return true;
