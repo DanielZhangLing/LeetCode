@@ -1,5 +1,62 @@
 package AddandSearchWordDatastructuredesign211;
 
+class WordDictionary {
+
+    WordDictionary[] dicts;
+    boolean isWord;
+    
+    /** Initialize your data structure here. */
+    public WordDictionary() {
+        dicts = new WordDictionary[26];
+        isWord = false;
+    }
+    
+    /** Adds a word into the data structure. */
+    public void addWord(String word) {
+        WordDictionary cur = this;
+        for(int i = 0 ; i<word.length(); i++){
+            int c = word.charAt(i)-'a';
+            if(null==cur.dicts[c]){
+                cur.dicts[c] = new WordDictionary();
+            }
+            cur = cur.dicts[c];
+            if(i == word.length()-1)
+                cur.isWord = true;
+        }
+    }
+    
+    /** Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter. */
+    public boolean search(String word) {
+    	//dfs
+        return search(word.toCharArray(), 0, this);
+    }
+    
+    private boolean search(char[] word, int index, WordDictionary wd){
+    	// check final case meet the end, remember is length() actually index is one step ahead of wd
+        if(index ==word.length){
+            return wd.isWord;
+        }
+        char c = word[index];
+        if(word[index]=='.'){
+            for(int i = 0; i<26; i++){
+                if(wd.dicts[i]!=null&&search(word, index+1, wd.dicts[i])){
+                    return true;
+                }
+            }
+            return false;
+        }else{
+           if(wd.dicts[c-'a']==null)
+               return false;
+        }    
+        return search(word, index+1, wd.dicts[c-'a']);
+    }
+}
+
+
+
+
+
+
 class TrieNode{
     char value;
     boolean isWord;

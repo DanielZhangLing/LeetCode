@@ -1,29 +1,25 @@
 package ImplementTrie208;
 
 public class ImplementTrie {
-
-    char val;
-    Trie[] t;
-    boolean isWord;
+    private Trie[] words;
+    private boolean isWord;
     /** Initialize your data structure here. */
     public Trie() {
-        t = new Trie[26];
-        val = ' ';
-    }
-    
-    public Trie(char c) {
-        t = new Trie[26];
-        val = c;
+        words = new Trie[26];
+        isWord = false;
     }
     
     /** Inserts a word into the trie. */
     public void insert(String word) {
         Trie cur = this;
-        for(char c: word.toCharArray()){
-            if(cur.t[c-'a']==null){
-                cur.t[c-'a'] = new Trie(c);
+        for(int i = 0; i <word.length(); i ++){
+            char c = word.charAt(i);
+            Trie next = cur.words[c-'a'];
+            if(next==null){
+                next = new Trie();// check  
+                cur.words[c-'a'] = next;
             }
-            cur = cur.t[c-'a'];
+            cur = next;
         }
         cur.isWord = true;
     }
@@ -31,11 +27,13 @@ public class ImplementTrie {
     /** Returns if the word is in the trie. */
     public boolean search(String word) {
         Trie cur = this;
-        for(char c: word.toCharArray()){
-            if(cur.t[c-'a']==null){
-                return false;
+        for(int i = 0; i <word.length(); i ++){
+            char c = word.charAt(i);
+            Trie next = cur.words[c-'a'];
+            if(next==null){
+               return false;// check   
             }
-            cur = cur.t[c-'a'];
+            cur = next;
         }
         return cur.isWord;
     }
@@ -43,20 +41,22 @@ public class ImplementTrie {
     /** Returns if there is any word in the trie that starts with the given prefix. */
     public boolean startsWith(String prefix) {
         Trie cur = this;
-        for(char c: prefix.toCharArray()){
-            if(cur.t[c-'a']==null){
-                return false;
+        for(int i = 0; i <prefix.length(); i ++){
+            char c = prefix.charAt(i);
+            Trie next = cur.words[c-'a'];
+            if(i == prefix.length()-1)
+                return next!=null;
+            if(next==null){
+               return false;// check   
             }
-            cur = cur.t[c-'a'];
+            cur = next;
         }
-        if(cur.isWord){
-            return true;
-        }
-        for(Trie elm: cur.t){
-            if (elm!=null)
-                return true;
-        }
-        return false;
+        // for(int i = 0; i<26; i++){
+        //     if(cur.words[i]!=null)
+        //         return true;
+        // }
+        // return false;  
+        return cur.isWord;
     }
 }
 
