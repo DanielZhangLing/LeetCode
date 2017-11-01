@@ -14,7 +14,6 @@ Output: 7 -> 0 -> 8
  */
 public class AddTwoNumbers {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-<<<<<<< Updated upstream
     	// we need to record the previous one so when we create the current one we can link them
         ListNode prev = new ListNode(0);
         ListNode head = prev;
@@ -32,7 +31,8 @@ public class AddTwoNumbers {
         }
         // the initial head is the previous of the first one
         return head.next;
-=======
+    }
+    public ListNode addTwoNumbers2(ListNode l1, ListNode l2) {
         ListNode result = new ListNode(0); // node before result
         ListNode cur = result;
         int flag = 0;
@@ -57,8 +57,5 @@ public class AddTwoNumbers {
             cur.next = temp;
         }
         return result.next;
-
-
->>>>>>> Stashed changes
     }
 }
