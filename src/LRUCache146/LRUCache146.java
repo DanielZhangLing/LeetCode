@@ -30,9 +30,9 @@ public class LRUCache146 {
             if(q.size()==capacity){
                 int temp = q.poll();
                 map.remove(temp);
-                q.add(key);
             }
             map.put(key,value);
+		q.add(key);
         }
     }
 }
