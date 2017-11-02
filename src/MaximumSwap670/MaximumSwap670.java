@@ -8,6 +8,7 @@ public class MaximumSwap670 {
         for(int i = 0 ; i<arr.length;i++){
             index[arr[i]-'0'] = i;
         }
+        // starting from the first number try to find the biggest bigger number behind them
         // for each number check whether bigger number exists behind them
         for(int i = 0; i<arr.length; i++){
             for(int j = 9; j>arr[i]-'0';j--){
