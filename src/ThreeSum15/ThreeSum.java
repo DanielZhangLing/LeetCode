@@ -1,4 +1,4 @@
-package ThreeSum;
+package ThreeSum15;
 
 public class ThreeSum {
 	/*
@@ -57,6 +57,48 @@ two sum可以用hashmap, 也可以用two pointer的方法
                 start++;
                 end--;
             }
+        }
+        return res;
+    }
+    
+    
+    
+    // map
+    public List<List<Integer>> threeSum(int[] nums) {
+        Set<List<Integer>> set = new HashSet<>();
+        List<List<Integer>> res = new ArrayList<>();
+        if(nums==null||nums.length==0)
+            return res;
+        for(int i = 0; i<nums.length-2; i++){
+            if(i!=0&&nums[i]==nums[i-1])
+                continue;
+            List<List<Integer>> two= twoSum(nums, i+1, -nums[i]);
+            if(!two.isEmpty()){
+                for(List<Integer> elm: two){
+                    elm.add(nums[i]);
+                    Collections.sort(elm);
+                    if(set.contains(elm))
+                        continue;
+                    set.add(elm);
+                    res.add(elm); 
+                }
+            }
+        }
+        return res;
+    }
+    
+    private List<List<Integer>> twoSum(int[] nums, int index, int target){
+        List<List<Integer>> res= new ArrayList<>();
+        Set<Integer> set = new HashSet<>();
+        for(int i=index; i<nums.length; i++){
+            int cur = nums[i];
+            if(set.contains(target-cur)){
+                List<Integer> two = new ArrayList<>();
+                two.add(cur);
+                two.add(target-cur);
+                res.add(two);
+            }
+            set.add(cur);
         }
         return res;
     }
