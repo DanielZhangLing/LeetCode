@@ -16,4 +16,15 @@ public class RemoveDuplicatesfromSortedArray26 {
         }
         return nums.length-count;
     }
+    
+    
+    xxxxxxx{
+        int index= 0 ; 
+        for(int i = 1; i<nums.length; i++){
+            if(nums[i]===nums[i-1])
+                continue;
+            nums[++index]=nums[i];
+        }
+        return index+1;
+    }
 }
