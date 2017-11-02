@@ -26,7 +26,7 @@ public class MultiplyStrings43 {
 	    }  
 	    
 	    StringBuilder sb = new StringBuilder();
-	    for(int p : pos) if(!(sb.length() == 0 && p == 0)) sb.append(p);
-	    return sb.length() == 0 ? "0" : sb.toString();
+	    for(int p : pos) if(!(sb.length() == 0 && p == 0)) sb.append(p);// 0 at beginning
+	    return sb.length() == 0 ? "0" : sb.toString();// still 0
 	}
 }
