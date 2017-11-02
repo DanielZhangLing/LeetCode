@@ -56,7 +56,7 @@ public class ImplementTrie {
         //         return true;
         // }
         // return false;  
-        return cur.isWord;
+        return false;
     }
 }
 
