@@ -8,59 +8,43 @@ import BinaryTreeInorderTraversal94.TreeNode;
 
 public class SerializeandDeserializeBST {
 
-    public static String serialize(TreeNode root) {
-        
-    	if(root==null) return "";
-    	Stack<TreeNode> stack = new Stack<TreeNode>();
-    	StringBuilder sb = new StringBuilder();
-    	while(root!=null||!stack.isEmpty()){
-    		while(root!=null){
-    			sb.append(root.val);
-    			sb.append(",");
-    			stack.push(root);
-    			root = root.left;
-    		}
-    		root = stack.pop();
-    		root = root.right;
-    	}
-    	
-    	String data = sb.toString();
-    	return data;
-    }
-    	
-
-    // Decodes your encoded data to tree.
-    public static TreeNode deserialize(String data) {
-        
-    	if(data.isEmpty()||data==""||data==null) return null;
-    	String[] dataA = data.split(",");
-    	Queue<Integer> q = new LinkedList<Integer>();
-    	for(String s:dataA)
-    		q.offer(Integer.parseInt(s));
-    	return getNode(q);
-    	
+    public String serialize(TreeNode root) {
+        if (root == null) return "";
+        Queue<TreeNode> q = new LinkedList<>();
+        StringBuilder res = new StringBuilder();
+        q.add(root);
+        while (!q.isEmpty()) {
+            TreeNode node = q.poll();
+            if (node == null) {
+                res.append("n ");
+                continue;
+            }
+            res.append(node.val + " ");
+            q.add(node.left);
+            q.add(node.right);
+        }
+        return res.toString();
     }
 
-
-	private static TreeNode getNode(Queue<Integer> q) {
-		// TODO Auto-generated method stub
-		if(q.isEmpty()) return null;
-		TreeNode current = new TreeNode(q.poll());
-		Queue<Integer> temp = new LinkedList<Integer>(); 
-		while(!q.isEmpty()&&q.peek()<current.val){
-			temp.offer(q.poll());			
-		}
-		current.left =  getNode(temp);
-		current.right = getNode(q);
-		return current;
-	}
-	
-	public static void main(String[] args){
-		TreeNode a = new TreeNode(2);
-		TreeNode b = new TreeNode(1);
-		TreeNode c = new TreeNode(3);
-		a.left = b;
-		a.right = c;
-		//System.out.println(deserialize(serialize()));
-	}
+    public TreeNode deserialize(String data) {
+        if (data == "") return null;
+        Queue<TreeNode> q = new LinkedList<>();
+        String[] values = data.split(" ");
+        TreeNode root = new TreeNode(Integer.parseInt(values[0]));
+        q.add(root);
+        for (int i = 1; i < values.length; i++) {
+            TreeNode parent = q.poll();
+            if (!values[i].equals("n")) {
+                TreeNode left = new TreeNode(Integer.parseInt(values[i]));
+                parent.left = left;
+                q.add(left);
+            }
+            if (!values[++i].equals("n")) {
+                TreeNode right = new TreeNode(Integer.parseInt(values[i]));
+                parent.right = right;
+                q.add(right);
+            }
+        }
+        return root;
+    }
 }
