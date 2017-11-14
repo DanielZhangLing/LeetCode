@@ -1,4 +1,4 @@
-package MinimumWindowSubstring;
+package MinimumWindowSubstring76;
 
 public class MinimumWindowSubstring {
     public String minWindow2(String s, String t) {
@@ -8,11 +8,18 @@ public class MinimumWindowSubstring {
             map[c]++;
         }
         while(cnt==0||r<s.length()){//first option is if find enough character cnt==0 l keep moving try to find smaller, only charcter in t will >=0, because l is iterating added character
-            if(cnt==0&&map[s.charAt(l++)]++>=0){
-                cnt++;
+            if(cnt==0){
+                if(map[s.charAt(l)]>=0)
+                    cnt++;
+                map[s.charAt(l)]++;
+                l++;
             }
-            if(r<s.length()&&cnt!=0&&map[s.charAt(r++)]-->=1){//necessary number havent meet 0, keep adding new character
-                cnt--;
+          //necessary number havent meet 0, keep adding new character
+            if(r<s.length()&&cnt!=0){
+                if(map[s.charAt(r)]>=1)
+                    cnt--;
+                map[s.charAt(r)]--;
+                r++;
             }
             if(cnt==0&&r-l<res){// update minimum
                 res = r-l;

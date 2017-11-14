@@ -8,16 +8,17 @@ public class ReadNCharactersGivenRead4157 {
 	 * 3. reading process has none business with rea4(??), but with char[] buf
 	 */
     public int read(char[] buf, int n) {
-        int total = 0;
-        char[] temp = new char[4];
-        while(true){
-            int cnt = read4(temp);
-            for(int i=0; i<cnt && total<n;i++){
-                buf[total++] = temp[i];
-            }
-            if(total==n||cnt==0){
-                return total;
-            }
+        boolean isEnd = false;
+        int index = 0;
+        char[] cur = new char[4];
+        while(!isEnd&&index<n){ 
+            int number = read4(cur);
+            if(number!=4)
+                isEnd = true;
+            number = Math.min(number, n-index);
+            for(int i = 0; i<number; i++)
+                buf[index++] = cur[i];
         }
+        return index;
     }
 }
