@@ -1,5 +1,6 @@
 package Permutations46;
 
+//O(n * n!) 
 public class Permutations46 {
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> res = new ArrayList<List<Integer>>();
