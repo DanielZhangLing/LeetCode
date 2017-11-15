@@ -18,12 +18,19 @@ public class RegularExpressionMatching10 {
         }
         boolean[][] dp = new boolean[s.length()+1][p.length()+1];
         dp[0][0] = true;
-    for (int i = 1; i <= p.length(); i++) {// when i=0 means match s="" if [0][j] = true
-    										// and [j+2] = * then [0][j+2] is true
-        if (p.charAt(i-1) == '*' && dp[0][i-2]) {
-            dp[0][i] = true;
+//     for (int i = 1; i <= p.length(); i++) {// when i=0 means match s="" if [0][j] = true
+//     										// and [j+2] = * then [0][j+2] is true
+//         if (p.charAt(i-1) == '*' && dp[0][i-2]) {
+//             dp[0][i] = true;
+//         }
+//     }
+	for (int j = 1; j < dp[0].length; j++) {
+            if (p.charAt(j - 1) == '*') {
+                if (dp[0][j - 1] || (j > 1 && dp[0][j - 2])) {
+                    dp[0][j] = true;
+                }
+            } 
         }
-    }
         for (int i = 1 ; i <= s.length(); i++) {
             for (int j = 1; j <= p.length(); j++) {
                 if(p.charAt(j-1)=='.'){
